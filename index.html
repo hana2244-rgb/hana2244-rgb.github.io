@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>モバイルアプリ — Sticrix & 捨て写</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --accent-sticrix: #e8dcc8;
+      --accent-sticrix-strong: #c4b59a;
+      --accent-sutesho: #fff3c2;
+      --accent-sutesho-strong: #e6c84a;
+      --radius: 16px;
+      --font-sans: "Outfit", "Noto Sans JP", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .app-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    .app-card.sticrix {
+      --accent: var(--accent-sticrix);
+      --accent-strong: var(--accent-sticrix-strong);
+    }
+
+    .app-card.sutesho {
+      --accent: var(--accent-sutesho);
+      --accent-strong: var(--accent-sutesho-strong);
+    }
+
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--bg);
+    }
+
+    .app-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .app-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .app-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: clamp(3rem, 10vw, 5rem);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>モバイルアプリ</h1>
+      <p class="subtitle">Akifumi.H — iOS / Android</p>
+    </header>
+
+    <div class="apps">
+      <a href="https://apps.apple.com/jp/app/sticrix/id6758619621" class="app-card sticrix" target="_blank" rel="noopener noreferrer" aria-label="Sticrix を App Store で見る">
+        <div class="app-icon">S</div>
+        <h2>Sticrix</h2>
+        <p>超シンプルな付箋マトリクス。重要度×緊急度の4象限や Todo/Doing/Done のカンバンで、やることをひと目で整理できます。</p>
+        <span class="app-badge">App Store で見る →</span>
+      </a>
+
+      <div class="app-card sutesho">
+        <div class="app-icon">捨</div>
+        <h2>捨て写</h2>
+        <p>写真を端末内で解析し、似ている写真を見つけます。外部送信は一切行いません。</p>
+        <span class="app-badge">写真整理 · 類似検出</span>
+      </div>
+    </div>
+
+    <footer>
+      <p>© Akifumi.H — Sticrix & 捨て写</p>
+    </footer>
+  </div>
+</body>
+</html>
