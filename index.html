@@ -97,14 +97,15 @@
       width: 56px;
       height: 56px;
       border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
       margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--bg);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .app-card h2 {
@@ -147,18 +148,18 @@
 
     <div class="apps">
       <a href="https://apps.apple.com/jp/app/sticrix/id6758619621" class="app-card sticrix" target="_blank" rel="noopener noreferrer" aria-label="Sticrix を App Store で見る">
-        <div class="app-icon">S</div>
+        <div class="app-icon"><img src="sticrix.png" alt="Sticrix" width="56" height="56"></div>
         <h2>Sticrix</h2>
         <p>超シンプルな付箋マトリクス。重要度×緊急度の4象限や Todo/Doing/Done のカンバンで、やることをひと目で整理できます。</p>
         <span class="app-badge">App Store で見る →</span>
       </a>
 
-      <div class="app-card sutesho">
-        <div class="app-icon">捨</div>
+      <a href="https://apps.apple.com/jp/app/%E6%8D%A8%E3%81%A6%E5%86%99/id6758648167" class="app-card sutesho" target="_blank" rel="noopener noreferrer" aria-label="捨て写 を App Store で見る">
+        <div class="app-icon"><img src="sutesha.png" alt="捨て写" width="56" height="56"></div>
         <h2>捨て写</h2>
-        <p>写真を端末内で解析し、似ている写真を見つけます。外部送信は一切行いません。</p>
-        <span class="app-badge">写真整理 · 類似検出</span>
-      </div>
+        <p>写真を捨てるに特化した管理アプリ。似てる写真を自動でグループ化し、残す1枚を選ぶだけでさくっと整理できます。解析も削除もすべて端末内です。</p>
+        <span class="app-badge">App Store で見る →</span>
+      </a>
     </div>
 
     <footer>
