@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>モバイルアプリ — Sticrix & 捨て写</title>
+  <title>モバイルアプリ — Sticrix & 捨て写 & サボログ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,6 +17,8 @@
       --accent-sticrix-strong: #c4b59a;
       --accent-sutesho: #fff3c2;
       --accent-sutesho-strong: #e6c84a;
+      --accent-sabolog: #ffd4d4;
+      --accent-sabolog-strong: #e63946;
       --radius: 16px;
       --font-sans: "Outfit", "Noto Sans JP", sans-serif;
     }
@@ -93,6 +95,11 @@
       --accent-strong: var(--accent-sutesho-strong);
     }
 
+    .app-card.sabolog {
+      --accent: var(--accent-sabolog);
+      --accent-strong: var(--accent-sabolog-strong);
+    }
+
     .app-icon {
       width: 56px;
       height: 56px;
@@ -160,10 +167,17 @@
         <p>写真を捨てるに特化した管理アプリ。似てる写真を自動でグループ化し、残す1枚を選ぶだけでさくっと整理できます。解析も削除もすべて端末内です。</p>
         <span class="app-badge">App Store で見る →</span>
       </a>
+
+      <div class="app-card sabolog">
+        <div class="app-icon"><img src="assets/sabolog-icon.png" alt="サボログ" width="56" height="56"></div>
+        <h2>サボログ</h2>
+        <p>あなたの「サボり」を記録するアプリです。できたことは忘れます。でも、サボったことは、なぜか覚えています。そのサボり、数字にしてみませんか。</p>
+        <span class="app-badge">準備中</span>
+      </div>
     </div>
 
     <footer>
-      <p>© Akifumi.H — Sticrix & 捨て写</p>
+      <p>© Akifumi.H — Sticrix & 捨て写 & サボログ</p>
     </footer>
   </div>
 </body>
