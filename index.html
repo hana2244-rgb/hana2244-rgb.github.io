@@ -121,6 +121,11 @@ p, h1, h2, h3 {
   }
 }
 
+@keyframes floating-y {
+  0% { transform: translateY(-10%); }
+  100% { transform: translateY(10%); }
+}
+
 /* Grain Overlay — 静止テクスチャのみ（アニメなしで震え防止） */
 body::before {
   content: '';
@@ -160,6 +165,9 @@ body::before {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+  .hero-shape {
+    animation-duration: 1.5s !important;
   }
   .scroll-reveal { opacity: 1; transform: none; }
   body::before { display: none; }
@@ -317,38 +325,64 @@ section {
    ═══════════════════════════════════════════ */
 .hero {
   min-height: 100dvh;
-  min-height: 100vh; /* fallback */
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 120px;
-  padding-bottom: 80px;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 60px;
   position: relative;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* Hero ambient glow */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle,
+      rgba(45, 45, 255, 0.08) 0%,
+      rgba(45, 45, 255, 0.03) 40%,
+      transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > .container {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-eyebrow {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-secondary);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   font-family: var(--font-body);
 }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 8vw, 7rem);
+  font-size: clamp(3rem, 7vw, 6.5rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
   font-weight: 400;
-  max-width: 800px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .hero h1 em {
@@ -357,18 +391,18 @@ section {
 }
 
 .hero-description {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   color: var(--text-secondary);
-  max-width: 440px;
-  line-height: 1.7;
-  margin-bottom: 48px;
+  max-width: 420px;
+  line-height: 1.8;
+  margin-bottom: 40px;
   font-family: var(--font-ja);
   font-weight: 300;
 }
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -415,17 +449,18 @@ section {
   color: white;
 }
 
-/* Hero floating shapes */
+/* ═══════════════════════════════════════════
+   Hero — App Cards（小さく・寄せて・ばらばらにふわふわ）
+   ═══════════════════════════════════════════ */
 .hero-shapes {
   position: absolute;
   top: 50%;
-  right: 2%;
+  right: 0;
   transform: translate3d(0, -50%, 0);
-  width: 460px;
-  height: 520px;
+  width: 280px;
+  height: 320px;
   z-index: 1;
   pointer-events: none;
-  backface-visibility: hidden;
 }
 
 .hero-shape {
@@ -433,34 +468,37 @@ section {
   border-radius: var(--radius);
   background: var(--bg-card);
   border: 1px solid var(--border);
-  will-change: transform;
-  backface-visibility: hidden;
+  animation: floating-y 1.5s ease-in-out infinite alternate-reverse;
 }
 
 .hero-shape-1 {
-  width: 175px;
-  height: 245px;
+  width: 110px;
+  height: 155px;
   top: 0;
   right: 0;
-  animation: float 6s ease-in-out infinite;
+  z-index: 1;
+  animation-duration: 2s;
+  animation-delay: 0s;
 }
 
 .hero-shape-2 {
-  width: 160px;
-  height: 220px;
-  top: 80px;
-  right: 220px;
-  animation: floatSlow 7s ease-in-out infinite;
-  animation-delay: -2s;
+  width: 105px;
+  height: 145px;
+  top: 50px;
+  right: 115px;
+  z-index: 2;
+  animation-duration: 2.2s;
+  animation-delay: 0.4s;
 }
 
 .hero-shape-3 {
-  width: 140px;
-  height: 190px;
+  width: 100px;
+  height: 135px;
   bottom: 0;
-  right: 80px;
-  animation: float 5.5s ease-in-out infinite;
-  animation-delay: -4s;
+  right: 20px;
+  z-index: 3;
+  animation-duration: 1.8s;
+  animation-delay: 0.8s;
 }
 
 .hero-shape-icon {
@@ -468,9 +506,9 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: white;
   display: flex;
   align-items: center;
@@ -486,15 +524,15 @@ section {
 }
 
 .hero-shape-icon .material-symbols-outlined {
-  font-size: 22px;
+  font-size: 18px;
   color: var(--text);
 }
 
 .hero-shape-label {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 0.75rem;
+  bottom: 12px;
+  left: 12px;
+  font-size: 0.7rem;
   color: var(--text-secondary);
   font-family: var(--font-body);
   letter-spacing: 0.02em;
@@ -550,6 +588,7 @@ section {
   position: relative;
   overflow: hidden;
   will-change: transform;
+  transform-style: preserve-3d;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -869,6 +908,39 @@ section {
 }
 
 /* ═══════════════════════════════════════════
+   Responsive — Medium desktop (≤ 1100px)
+   ═══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .hero > .container {
+    grid-template-columns: 1fr 300px;
+    gap: 32px;
+  }
+
+  .hero-shapes {
+    width: 260px;
+    height: 300px;
+  }
+
+  .hero-shape-1 {
+    width: 100px;
+    height: 142px;
+  }
+
+  .hero-shape-2 {
+    width: 98px;
+    height: 132px;
+    top: 45px;
+    right: 108px;
+  }
+
+  .hero-shape-3 {
+    width: 92px;
+    height: 122px;
+    right: 16px;
+  }
+}
+
+/* ═══════════════════════════════════════════
    Responsive — Tablet (≤ 900px)
    ═══════════════════════════════════════════ */
 @media (max-width: 900px) {
@@ -889,6 +961,10 @@ section {
 
   .hero-shapes {
     display: none;
+  }
+
+  .hero > .container {
+    grid-template-columns: 1fr;
   }
 
   .nav-links {
@@ -1397,6 +1473,27 @@ section {
   });
 
   reveals.forEach(el => observer.observe(el));
+})();
+
+// ═══════════ Card 3D Hover ═══════════
+(function() {
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 12;
+      const rotateY = (centerX - x) / 12;
+      card.style.transform =
+        `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
 })();
 
 // ═══════════ Mobile Nav ═══════════
